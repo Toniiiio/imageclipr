@@ -1,0 +1,22 @@
+---
+title: "UI Report"
+output:
+  word_document:
+    fig_caption: yes
+    highlight: tango
+  pdf_document: default
+  html_document:
+    df_print: paged
+date: '2019'
+subtitle: Template
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+```
+
+```{r chunk-label, echo = FALSE, fig.cap = "Caption"}
+knitr::include_graphics("")
+```
+
+

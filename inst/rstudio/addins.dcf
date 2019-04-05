@@ -1,0 +1,4 @@
+Name: InsertImage
+Description: Insert Image from Clipboard
+Binding: insertImageCode
+Interactive: false
