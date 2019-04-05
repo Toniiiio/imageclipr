@@ -1,4 +1,6 @@
 ## imageclipr
+[![CRAN version](http://www.r-pkg.org/badges/version/imageclipr)](https://cran.r-project.org/package=imageclipr)
+
 RStudio Addin: Copy images from clipboard into RMarkdown .Rmd files.
 
 ![Usage of imageclipr](usage.gif)
