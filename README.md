@@ -12,7 +12,9 @@ R Pakete `library(rstudioapi)`, `library(reticulate)` (`library(rmarkdown)` for 
 # Open issues
 - remove python dependency
 - can not: 
+
 -- copy and paste image and text together
+
 -- copy and paste an image by copying the file in the explorer
 
 # Adding a keyboard shortcut
