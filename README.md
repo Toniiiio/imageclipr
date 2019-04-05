@@ -10,6 +10,8 @@ R Pakete `library(rstudioapi)`, `library(reticulate)` (`library(rmarkdown)` for 
 `devtools::install_github('Timag/imageclipr')`
 
 ## Adding a keyboard shortcut
+In RStudio go to Tools - Modify Keyboard Shortcuts...
+
 ![Plot title. ](clipboardImage_1.png)
 
 ![Plot title. ](clipboardImage_2.png)
