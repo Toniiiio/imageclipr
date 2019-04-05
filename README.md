@@ -1,6 +1,8 @@
 ## imageclipr
 RStudio Addin: Copy images from clipboard into RMarkdown .Rmd files.
 
+![Usage of imageclipr](usage.gif)
+
 ## Dependencies
 Python (incl. PIL library)
 
@@ -20,13 +22,13 @@ R Pakete `library(rstudioapi)`, `library(reticulate)` (`library(rmarkdown)` for 
 ## Usage
 
 ### Select the addin
-![Plot title. ](clipboardImage_5.png)
+![Addin selection](clipboardImage_5.png)
 
 ### Adding a keyboard shortcut (Recommended)
 In RStudio go to Tools - Modify Keyboard Shortcuts...
 
-![Plot title. ](clipboardImage_1.png)
+![Find Shortcuts](clipboardImage_1.png)
 
-![Plot title. ](clipboardImage_2.png)
+![Modify Shortcuts](clipboardImage_2.png)
 
 
