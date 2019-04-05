@@ -37,3 +37,4 @@ In RStudio go to Tools - Modify Keyboard Shortcuts...
 ![Modify Shortcuts](clipboardImage_2.png)
 
 
+(This project is part of my life long application to RStudio :))
