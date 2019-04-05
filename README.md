@@ -21,6 +21,9 @@ Python (incl. PIL library)
 
 -- copy and paste an image by copying the file in the explorer
 
+## Technical walkthrough
+(highlevel): https://stackoverflow.com/questions/55541345/copy-and-paste-an-image-from-clipboard-to-rmarkdown-rmd-code
+
 ## Usage
 
 ### Select the addin
