@@ -4,9 +4,9 @@ RStudio Addin: Copy images from clipboard into RMarkdown .Rmd files.
 ![Usage of imageclipr](usage.gif)
 
 ## Dependencies
-Python (incl. PIL library)
-
 R Pakete `library(rstudioapi)`, `library(reticulate)` (`library(rmarkdown)` for markdown files)
+
+Python (incl. PIL library)
 
 ## Installation
 `devtools::install_github('Timag/imageclipr')`
