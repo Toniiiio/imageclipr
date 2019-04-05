@@ -17,9 +17,15 @@ R Pakete `library(rstudioapi)`, `library(reticulate)` (`library(rmarkdown)` for 
 
 -- copy and paste an image by copying the file in the explorer
 
-# Adding a keyboard shortcut
+# Usage
+
+## Adding a keyboard shortcut (Recommended)
 In RStudio go to Tools - Modify Keyboard Shortcuts...
 
 ![Plot title. ](clipboardImage_1.png)
 
 ![Plot title. ](clipboardImage_2.png)
+
+## Select the addin
+![Plot title. ](clipboardImage_5.png)
+
