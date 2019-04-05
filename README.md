@@ -1,5 +1,5 @@
 # imageclipr
-RStudio Addin: Copy Image from Clipboard into RMarkdown .Rmd file
+RStudio Addin: Copy Images from clipboard into RMarkdown .Rmd files.
 
 # Dependencies
 Python (incl. PIL library)
