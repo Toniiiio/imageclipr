@@ -1,11 +1,11 @@
 Package: imageclipr
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Copy image from clipboard to RMarkdown .Rmd files
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Tonio Liebrand
+Maintainer: Tonio Liebrand <andreas.liebrand@hof.uni-frankfurt.de>
+Description: Copy image from clipboard to RMarkdown .Rmd files. rmd code is generated and the image automatically inserted
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Imports: rstudioapi, reticulate
