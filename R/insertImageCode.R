@@ -48,9 +48,11 @@ insertImageCode <- function(){
   library(rstudioapi)
 
   # oldFileContent <- getActiveDocumentContext()$contents
+  docId <- getActiveDocumentContext()$id
+  if(docId %in% c("#console", "#terminal")) stop("You can`t insert an image in the console nor in the terminal. 
+                                                 Please select a line in the source editor.")
   filePath <- getActiveDocumentContext()$path
   if(!nchar(filePath)) stop("Please save the file before pasting an image.")
-  docId <- getActiveDocumentContext()$id
   splitted <- strsplit(filePath, "[/]")[[1]]
   dirPath <- paste(splitted[1:(length(splitted) - 1)], collapse = "/")
   ImgfileName = findImgFileName(dirPath, fileType = ".png")
