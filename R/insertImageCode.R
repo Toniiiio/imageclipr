@@ -1,4 +1,3 @@
-
 saveClipboardImage <- function(fileName, dir = getwd()){
   library(reticulate)
   library(rstudioapi)
@@ -6,6 +5,14 @@ saveClipboardImage <- function(fileName, dir = getwd()){
   filePath <- paste0(dir, "/" , fileName)
   # Refactoring;2;2;Check how other functions deal with the file saving
   if(file.exists(filePath)) stop(paste0("File already exists at: ", filePath, ". Did not save the file."))
+
+  tryCatch(import("os"), error = function(e){
+    stop("Can not use python, please configure the reticulate/python setup.")
+  })
+  tryCatch(import("PIL"), error = function(e){
+    stop("Required python package PIL is not installed.")
+  })
+
   pyCode <- paste0("from PIL import ImageGrab; im = ImageGrab.grabclipboard(); im.save('", filePath, "','PNG')")
   tryCatch(py_run_string(pyCode), error = function(e){
     if("AttributeError: 'NoneType' object has no attribute 'save'" == e) stop("Clipboard data is not an image.")
@@ -32,6 +39,9 @@ findImgFileName <- function(dirPath, fileType = ".png"){
 }
 
 
+
+#assumption;2;4; if multiple images are selected and copied they will be added to one
+#open issue;2;3;configure parameter for addins
 #todo;2;3;create an image folder and edit the path accordingly
 insertImageCode <- function(){
   library(reticulate)
@@ -39,20 +49,16 @@ insertImageCode <- function(){
 
   # oldFileContent <- getActiveDocumentContext()$contents
   filePath <- getActiveDocumentContext()$path
+  if(!nchar(filePath)) stop("Please save the file before pasting an image.")
   docId <- getActiveDocumentContext()$id
   splitted <- strsplit(filePath, "[/]")[[1]]
   dirPath <- paste(splitted[1:(length(splitted) - 1)], collapse = "/")
   ImgfileName = findImgFileName(dirPath, fileType = ".png")
 
   # refactor;3;3;get file ending
-  # newFileName <- gsub("[.]Rmd", "2.Rmd", filePath)
-  # activeLine <- getActiveDocumentContext()$selection[[1]]$range$start[[1]]
   saveClipboardImage(ImgfileName, dir = dirPath)
   position <- getActiveDocumentContext()$selection[[1]]$range$start
   newCode <- paste0("![Plot title. ](", ImgfileName, ")")
   insertText(position, newCode, id = docId)
-  # newFileContent <- paste(c(oldFileContent[1:(activeLine - 1)], newCode, oldFileContent[activeLine:length(oldFileContent)]), collapse = "\n")
-  # write.table(file = newFileName, newFileContent, row.names = FALSE, col.names = FALSE, quote = FALSE)
-  # file.edit(newFileName)
 }
 
