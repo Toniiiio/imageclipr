@@ -47,7 +47,7 @@ insertImageCode <- function(){
   library(reticulate)
   library(rstudioapi)
 
-  if(Sys.info()['sysname'] == "Linux") stop("The addin only works for MacOS and Windows.")
+  if(Sys.info()['sysname'] == "Linux") stop("The addin only supports MacOS and Windows.")
   
   # oldFileContent <- getActiveDocumentContext()$contents
   docId <- getActiveDocumentContext()$id
