@@ -1,7 +1,7 @@
 saveClipboardImage <- function(fileName, dir = getwd()){
   library(reticulate)
   library(rstudioapi)
-  print(99)
+  
   filePath <- paste0(dir, "/" , fileName)
   # Refactoring;2;2;Check how other functions deal with the file saving
   if(file.exists(filePath)) stop(paste0("File already exists at: ", filePath, ". Did not save the file."))
