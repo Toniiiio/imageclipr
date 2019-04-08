@@ -10,7 +10,7 @@ saveClipboardImage <- function(fileName, dir = getwd()){
     stop("Can not use python, please configure the reticulate/python setup.")
   })
   tryCatch(import("PIL"), error = function(e){
-    stop("Required python package PIL is not installed.")
+    stop("Required python package PIL is not installed on the python linked at reticulate. Check py_config() for linked python version. Restart R after installing PIL.")
   })
 
   pyCode <- paste0("from PIL import ImageGrab; im = ImageGrab.grabclipboard(); im.save('", filePath, "','PNG')")
