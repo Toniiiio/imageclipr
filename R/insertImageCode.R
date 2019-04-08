@@ -47,6 +47,8 @@ insertImageCode <- function(){
   library(reticulate)
   library(rstudioapi)
 
+  if(Sys.info()['sysname'] == "Linux") stop("The addin only works for MacOS and Windows.")
+  
   # oldFileContent <- getActiveDocumentContext()$contents
   docId <- getActiveDocumentContext()$id
   if(docId %in% c("#console", "#terminal")) stop("You can`t insert an image in the console nor in the terminal. 
