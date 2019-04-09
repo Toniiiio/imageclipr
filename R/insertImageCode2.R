@@ -43,7 +43,7 @@ findImgFileName <- function(dirPath, fileType = ".png"){
 #assumption;2;4; if multiple images are selected and copied they will be added to one
 #open issue;2;3;configure parameter for addins
 #todo;2;3;create an image folder and edit the path accordingly
-insertImageCode <- function(){
+insertImageCode2 <- function(){
   library(reticulate)
   library(rstudioapi)
 
