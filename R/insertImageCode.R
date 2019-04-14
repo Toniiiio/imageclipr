@@ -1,7 +1,10 @@
+imagecliprEnv <- new.env(parent = emptyenv())
+imagecliprEnv$newCode <- function(ImgfileName) paste0("![Plot title. ](", ImgfileName, ")")
+
 saveClipboardImage <- function(fileName, dir = getwd()){
   library(reticulate)
   library(rstudioapi)
-  
+
   filePath <- paste0(dir, "/" , fileName)
   # Refactoring;2;2;Check how other functions deal with the file saving
   if(file.exists(filePath)) stop(paste0("File already exists at: ", filePath, ". Did not save the file."))
@@ -44,14 +47,16 @@ findImgFileName <- function(dirPath, fileType = ".png"){
 #open issue;2;3;configure parameter for addins
 #todo;2;3;create an image folder and edit the path accordingly
 insertImageCode <- function(){
+  func = imagecliprEnv$newCode
+  print(func)
   library(reticulate)
   library(rstudioapi)
 
-  if(Sys.info()['sysname'] == "Linux") stop("The addin only supports MacOS and Windows.")
-  
+  # if(Sys.info()['sysname'] == "Linux") stop("The addin only supports MacOS and Windows.")
+
   # oldFileContent <- getActiveDocumentContext()$contents
   docId <- getActiveDocumentContext()$id
-  if(docId %in% c("#console", "#terminal")) stop("You can`t insert an image in the console nor in the terminal. 
+  if(docId %in% c("#console", "#terminal")) stop("You can`t insert an image in the console nor in the terminal.
                                                  Please select a line in the source editor.")
   filePath <- getActiveDocumentContext()$path
   if(!nchar(filePath)) stop("Please save the file before pasting an image.")
@@ -62,7 +67,5 @@ insertImageCode <- function(){
   # refactor;3;3;get file ending
   saveClipboardImage(ImgfileName, dir = dirPath)
   position <- getActiveDocumentContext()$selection[[1]]$range$start
-  newCode <- paste0("![Plot title. ](", ImgfileName, ")")
-  insertText(position, newCode, id = docId)
+  insertText(position, func(ImgfileName), id = docId)
 }
-
