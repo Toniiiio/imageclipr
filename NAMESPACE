@@ -1,3 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 import(rstudioapi)
 import(reticulate)
+import(shiny)
+import(miniUI)
+import(shinyjs)
