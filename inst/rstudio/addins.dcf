@@ -3,7 +3,7 @@ Description: Insert Image from Clipboard
 Binding: insertImageCode
 Interactive: false
 
-Name: InsertImage (workaround for CE - dont use)
-Description: Insert Image from Clipboard
-Binding: insertImageCode2
-Interactive: false
+Name: Configuration
+Description: Configure which code to insert
+Binding: config
+Interactive: true
