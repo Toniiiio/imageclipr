@@ -29,7 +29,7 @@ config <- function() {
                      "includegraphics" = "includegraphics")),
 
       textInput("fileName", "file name", "clipboardImage_1.png"),
-      checkboxInput("showField", "Code bearbeiten:", T),
+      checkboxInput("showField", "Code bearbeiten:", FALSE),
       uiOutput("editCode"),
       verbatimTextOutput("code"),
       h6("Click 'done' to close and then select Addin (or corresponding Keyboard shortcut) to insert image from clipboard to .Rmd.")
