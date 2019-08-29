@@ -18,7 +18,14 @@ saveClipboardImage <- function(fileName, dir = getwd()){
 
   pyCode <- paste0("from PIL import ImageGrab; im = ImageGrab.grabclipboard(); im.save('", filePath, "','PNG')")
   tryCatch(py_run_string(pyCode), error = function(e){
-    if("AttributeError: 'NoneType' object has no attribute 'save'" == e) stop("Clipboard data is not an image.")
+    
+    if("AttributeError: 'NoneType' object has no attribute 'save'" == e){
+      stop("Clipboard data is not an image.")
+     }else{
+      stop(
+        paste0("Error copying the file with python. Error message reads: ", e)
+      )
+     }
   })
 }
 
