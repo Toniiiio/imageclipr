@@ -67,6 +67,10 @@ insertImageCode <- function(){
                                                  Please select a line in the source editor.")
   filePath <- getActiveDocumentContext()$path
   if(!nchar(filePath)) stop("Please save the file before pasting an image.")
+  
+  # if the first is tilde, then the python code breaks. Let's replace this using Sys.getenv
+  filePath <- gsub( "^~", Sys.getenv("HOME"), filePath)
+  
   splitted <- strsplit(filePath, "[/]")[[1]]
   dirPath <- paste(splitted[1:(length(splitted) - 1)], collapse = "/")
   ImgfileName = findImgFileName(dirPath, fileType = ".png")
