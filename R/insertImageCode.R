@@ -30,9 +30,13 @@ saveClipboardImage <- function(fileName, dir = getwd()){
 }
 
 
-findImgFileName <- function(dirPath, fileType = ".png"){
+findImgFileName <- function(filePath, fileType = ".png"){
+  # this is to check whether there are identical names
+  
+  dirPath <- dirname(filePath)
+  identifierName <- paste0( gsub(paste0("\\.", tools::file_ext(filePath)), "", basename(filePath)), "_insertimage_" )
+
   fileNames <- list.files(dirPath)
-  identifierName <- "clipboardImage_"
 
   idx <- grep(identifierName, fileNames)
   candidates <- strsplit(fileNames[idx], identifierName)
@@ -55,7 +59,7 @@ findImgFileName <- function(dirPath, fileType = ".png"){
 #todo;2;3;create an image folder and edit the path accordingly
 insertImageCode <- function(){
   func = imagecliprEnv$newCode
-  print(func)
+  #print(func)
   library(reticulate)
   library(rstudioapi)
 
@@ -71,12 +75,10 @@ insertImageCode <- function(){
   # if the first is tilde, then the python code breaks. Let's replace this using Sys.getenv
   filePath <- gsub( "^~", Sys.getenv("HOME"), filePath)
   
-  splitted <- strsplit(filePath, "[/]")[[1]]
-  dirPath <- paste(splitted[1:(length(splitted) - 1)], collapse = "/")
-  ImgfileName = findImgFileName(dirPath, fileType = ".png")
+  ImgfileName = findImgFileName(filePath, fileType = ".png")
 
   # refactor;3;3;get file ending
-  saveClipboardImage(ImgfileName, dir = dirPath)
+  saveClipboardImage(ImgfileName, dir = dirname(filePath))
   position <- getActiveDocumentContext()$selection[[1]]$range$start
   insertText(position, func(ImgfileName), id = docId)
 }
