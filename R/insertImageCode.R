@@ -10,25 +10,37 @@ saveClipboardImage <- function(fileName, dir = getwd()){
   filePath <- paste0(dir, "/" , fileName)
   # Refactoring;2;2;Check how other functions deal with the file saving
   if(file.exists(filePath)) stop(paste0("File already exists at: ", filePath, ". Did not save the file."))
+  if (grepl("linux-gnu", R.version$os)){
+    # Executing on Linux! -> use xclip
+    tryCatch(targets <- tolower(system("xclip -selection clipboard -t TARGETS -o",intern=T)), error = function(e){
+      stop("Please install the required system dependency xclip")
+    }) # Validate xclip is installed and get targets from clipboard
+    if (any(grepl(".*png$",targets))){
+      system(paste0("xclip -selection clipboard -t image/png -o > ", filePath, ".png"))
+    }else if (any(grepl(".*jpg$",targets))){
+      system(paste0("xclip -selection clipboard -t image/jpg -o > ", filePath, ".jpg"))
+    }
+  }else{
+    tryCatch(import("os"), error = function(e){
+      stop("Can not use python, please configure the reticulate/python setup.")
+    })
+    tryCatch(import("PIL"), error = function(e){
+      stop("Required python package PIL is not installed on the python linked at reticulate. Check py_config() for linked python version. Restart R after installing PIL.")
+    })
 
-  tryCatch(import("os"), error = function(e){
-    stop("Can not use python, please configure the reticulate/python setup.")
-  })
-  tryCatch(import("PIL"), error = function(e){
-    stop("Required python package PIL is not installed on the python linked at reticulate. Check py_config() for linked python version. Restart R after installing PIL.")
-  })
+    pyCode <- paste0("from PIL import ImageGrab; im = ImageGrab.grabclipboard(); im.save('", filePath, "','PNG')")
+    tryCatch(py_run_string(pyCode), error = function(e){
 
-  pyCode <- paste0("from PIL import ImageGrab; im = ImageGrab.grabclipboard(); im.save('", filePath, "','PNG')")
-  tryCatch(py_run_string(pyCode), error = function(e){
+      if("AttributeError: 'NoneType' object has no attribute 'save'" == e){
+        stop("Clipboard data is not an image.")
+      }else{
+        stop(
+          paste0("Error copying the file with python. Error message reads: ", e)
+        )
+      }
+    })
+  }
 
-    if("AttributeError: 'NoneType' object has no attribute 'save'" == e){
-      stop("Clipboard data is not an image.")
-     }else{
-      stop(
-        paste0("Error copying the file with python. Error message reads: ", e)
-      )
-     }
-  })
 }
 
 
