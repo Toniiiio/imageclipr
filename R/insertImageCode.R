@@ -1,3 +1,5 @@
+# Testing Git Hub WorkFlow
+
 imagecliprEnv <- new.env(parent = emptyenv())
 imagecliprEnv$newCode <- function(ImgfileName) paste0("![Plot title. ](", ImgfileName, ")")
 
@@ -18,7 +20,7 @@ saveClipboardImage <- function(fileName, dir = getwd()){
 
   pyCode <- paste0("from PIL import ImageGrab; im = ImageGrab.grabclipboard(); im.save('", filePath, "','PNG')")
   tryCatch(py_run_string(pyCode), error = function(e){
-    
+
     if("AttributeError: 'NoneType' object has no attribute 'save'" == e){
       stop("Clipboard data is not an image.")
      }else{
@@ -32,7 +34,7 @@ saveClipboardImage <- function(fileName, dir = getwd()){
 
 findImgFileName <- function(filePath, fileType = ".png"){
   # this is to check whether there are identical names
-  
+
   dirPath <- dirname(filePath)
   identifierName <- paste0( gsub(paste0("\\.", tools::file_ext(filePath)), "", basename(filePath)), "_insertimage_" )
 
@@ -71,10 +73,10 @@ insertImageCode <- function(){
                                                  Please select a line in the source editor.")
   filePath <- getActiveDocumentContext()$path
   if(!nchar(filePath)) stop("Please save the file before pasting an image.")
-  
+
   # if the first is tilde, then the python code breaks. Let's replace this using Sys.getenv
   filePath <- gsub( "^~", Sys.getenv("HOME"), filePath)
-  
+
   ImgfileName = findImgFileName(filePath, fileType = ".png")
 
   # refactor;3;3;get file ending
