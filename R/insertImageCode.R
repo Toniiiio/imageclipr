@@ -1,5 +1,3 @@
-# Testing Git Hub WorkFlow
-
 imagecliprEnv <- new.env(parent = emptyenv())
 imagecliprEnv$newCode <- function(ImgfileName) paste0("![Plot title. ](", ImgfileName, ")")
 
@@ -16,9 +14,9 @@ saveClipboardImage <- function(fileName, dir = getwd()){
       stop("Please install the required system dependency xclip")
     }) # Validate xclip is installed and get targets from clipboard
     if (any(grepl(".*png$",targets))){
-      system(paste0("xclip -selection clipboard -t image/png -o > ", filePath, ".png"))
+      system(paste0("xclip -selection clipboard -t image/png -o > ", filePath))
     }else if (any(grepl(".*jpg$",targets))){
-      system(paste0("xclip -selection clipboard -t image/jpg -o > ", filePath, ".jpg"))
+      system(paste0("xclip -selection clipboard -t image/jpg -o > ", filePath))
     }
   }else{
     tryCatch(import("os"), error = function(e){
@@ -76,8 +74,6 @@ insertImageCode <- function(){
   #print(func)
   library(reticulate)
   library(rstudioapi)
-
-  # if(Sys.info()['sysname'] == "Linux") stop("The addin only supports MacOS and Windows.")
 
   # oldFileContent <- getActiveDocumentContext()$contents
   docId <- getActiveDocumentContext()$id
