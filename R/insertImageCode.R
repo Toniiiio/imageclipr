@@ -15,8 +15,6 @@ saveClipboardImage <- function(fileName, dir = getwd()){
     }) # Validate xclip is installed and get targets from clipboard
     if (any(grepl(".*png$",targets))){
       system(paste0("xclip -selection clipboard -t image/png -o > ", filePath))
-    }else if (any(grepl(".*jpg$",targets))){
-      system(paste0("xclip -selection clipboard -t image/jpg -o > ", filePath))
     }
   }else{
     tryCatch(import("os"), error = function(e){
