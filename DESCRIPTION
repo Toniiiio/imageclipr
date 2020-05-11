@@ -8,4 +8,4 @@ Description: Copy image from clipboard to RMarkdown .Rmd files. rmd code is gene
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-Imports: rstudioapi, reticulate, shiny, miniUI, shinyjs
+Imports: rstudioapi, shiny, miniUI, shinyjs
