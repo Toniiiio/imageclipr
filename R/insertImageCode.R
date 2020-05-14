@@ -24,7 +24,15 @@ grabclipboard <- function(filepath){
       "  }\""
     )
     system(script)
+  }else if (platform == 'Linux') {
+    tryCatch(targets <- tolower(system("xclip -selection clipboard -t TARGETS -o",intern=T)), error = function(e){
+      stop("Please install the required system dependency xclip")
+    }) # Validate xclip is installed and get targets from clipboard
+    if (any(grepl(".*png$",targets))){
+      system(paste0("xclip -selection clipboard -t image/png -o > ", filePath))
+    }
   }
+
   # writeLines(script)
 
   # in mac os, if no image in clipboard, exec script will create a empty image
