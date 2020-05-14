@@ -29,7 +29,7 @@ grabclipboard <- function(filepath){
       stop("Please install the required system dependency xclip")
     }) # Validate xclip is installed and get targets from clipboard
     if (any(grepl(".*png$",targets))){
-      system(paste0("xclip -selection clipboard -t image/png -o > ", filePath))
+      system(paste0("xclip -selection clipboard -t image/png -o > ", filepath))
     }
   }
 
