@@ -60,7 +60,7 @@ save_clipboard_image <- function(file_name, dir = getwd()) {
   # check if a valid picture was saved.
   # In mac os, if no image is in the clipboard, exec script will create a empty image
   # In windows, no image will be created
-  if (file.exists(file_path) && file.size(file_path) > 0) {
+  if (!file.exists(file_path) | file.size(file_path) == 0) {
     stop("Clipboard data is not an image.")
   }
 
