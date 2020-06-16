@@ -1,6 +1,6 @@
-Name: InsertImage
+Name: Paste Imaege to Rmd file
 Description: Insert Image from Clipboard
-Binding: insertImageCode
+Binding: insert_image_code
 Interactive: false
 
 Name: Configuration
