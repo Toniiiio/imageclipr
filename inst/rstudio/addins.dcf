@@ -1,4 +1,4 @@
-Name: Paste Imaege to Rmd file
+Name: Paste Image to Rmd file
 Description: Insert Image from Clipboard
 Binding: insert_image_code
 Interactive: false
