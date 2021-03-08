@@ -32,10 +32,16 @@ sudo apt-get install xclip
 ## Usage
 
 ### Select the addin
+
+Note: You will see "Paste Img to Rmd file" instead of "Insert Image".
+
 ![Addin selection](clipboardImage_5.png)
 
 ### Adding a keyboard shortcut (Recommended)
 In RStudio go to Tools - Modify Keyboard Shortcuts...
+
+Note: You will see "Paste Img to Rmd file" instead of "Insert Image".
+
 
 ![Find Shortcuts](clipboardImage_1.png)
 
