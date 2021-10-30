@@ -23,7 +23,7 @@ save_clipboard_image <- function(file_name, dir = getwd()) {
       "osascript -e \'
       set theFile to (open for access POSIX file \"", file_path, "\" with write permission)
       try
-      write (the clipboard as «class PNGf») to theFile
+      write (the clipboard as \u00abclass PNGf\u00bb) to theFile
       end try
       close access theFile'"
     )
